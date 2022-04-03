@@ -1,12 +1,9 @@
 import React from 'react';
-import styled from 'styled-components'
 import { Produtos } from './components/VitrineDeProdutos/Produtos';
 import { Filtro } from './components/Filtro';
 import { Carrinho } from './components/Carrinho/Carrinho';
+import { ContainerPrincipal, ContainerFlexGrande } from './components/styles'
 
-const ContainerPrincipal = styled.div`
-display: flex;
-`
 const produtos = [
   {
     id: 1,
@@ -28,7 +25,7 @@ const produtos = [
   },
   {
     id: 4,
-    nome: 'Camiseta comemorativa',
+    nome: 'Camiseta Vaza',
     valor: 125,
     photo: "http://d3ugyf2ht6aenh.cloudfront.net/stores/001/308/484/products/19-camisa-vaza-i-need-space1-17ecaccf68d80ac60216295608910386-640-0.png",
   },
@@ -102,8 +99,8 @@ class App extends React.Component {
       return produto
     }).filter((produto) => {
       return produto.quantidade > 0
-    }) 
-    this.setState({carrinho: novoProdutoNoCarrinho})
+    })
+    this.setState({ carrinho: novoProdutoNoCarrinho })
   }
 
   render() {
@@ -111,29 +108,29 @@ class App extends React.Component {
     return (
 
       <ContainerPrincipal>
+        <ContainerFlexGrande>
+          <Filtro
+            filtroMin={this.state.filtroMin}
+            novoFiltroMin={this.novoFiltroMin}
+            filtroMax={this.state.filtroMax}
+            novoFiltroMax={this.novoFiltroMax}
+            filtroNome={this.state.filtroNome}
+            novoFiltroNome={this.novoFiltroNome}
+          />
 
-        <Filtro
-          filtroMin={this.state.filtroMin}
-          novoFiltroMin={this.novoFiltroMin}
-          filtroMax={this.state.filtroMax}
-          novoFiltroMax={this.novoFiltroMax}
-          filtroNome={this.state.filtroNome}
-          novoFiltroNome={this.novoFiltroNome}
-        />
+          <Produtos
+            produtos={produtos}
+            filtroMin={this.state.filtroMin}
+            filtroMax={this.state.filtroMax}
+            filtroNome={this.state.filtroNome}
+            adicionaProdutoNoCarrinho={this.adicionaProdutoNoCarrinho}
+          />
 
-        <Produtos
-          produtos={produtos}
-          filtroMin={this.state.filtroMin}
-          filtroMax={this.state.filtroMax}
-          filtroNome={this.state.filtroNome}
-          adicionaProdutoNoCarrinho={this.adicionaProdutoNoCarrinho}
-        />
-
-        <Carrinho
-          carrinho={this.state.carrinho}
-          removeProdutoDoCarrinho={this.removeProdutoDoCarrinho}
-        />
-
+          <Carrinho
+            carrinho={this.state.carrinho}
+            removeProdutoDoCarrinho={this.removeProdutoDoCarrinho}
+          />
+        </ContainerFlexGrande>
       </ContainerPrincipal>
 
     );

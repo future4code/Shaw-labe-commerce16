@@ -1,17 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 import { ProdutoCarrinho } from './ProdutoCarrinho'
+import { ContainerPrincipalCarrinho } from '../styles'
 
-const ContainerPrincipalCarrinho = styled.div`
-    display:flex;
-    flex-direction: column;
-    width: 20vw; 
-    border: 1px solid black;
-    height: 61vh;
-    margin: 1rem;
-    padding: 0.5rem;
-    
-`
+
 
 export class Carrinho extends React.Component {
     
